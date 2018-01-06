@@ -1,0 +1,33 @@
+/*********************
+CTA SECTION
+**********************/
+
+.cta-body {
+  background-color: #355E58;
+  color: white;
+  padding: 3rem;
+  margin: 20px 0;
+  display: flex;
+}
+
+.cta-body__text {
+  max-width:500px;
+  width: 75%;
+}
+
+.cta-body__btn {
+  margin: 0 auto;
+  width: 25%;
+}
+
+.cta-body__btn button:hover {
+  cursor: pointer;
+}
+
+.cta-body__btn * {
+  background-color: #4BAEFC;
+  color: white;
+  padding: 1rem;
+  border: none;
+  margin: 0 auto;
+}

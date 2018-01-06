@@ -1,0 +1,21 @@
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding-left: 0px;
+  justify-content: center;
+}
+
+.movie-list .movie-container {
+  width: 31%;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.movie-image {
+  width: 100%;
+}
+
+.genre {
+  display: block;
+}
