@@ -6,6 +6,19 @@ import MovieList from './components/MovieList';
 import Filters from './components/Filters';
 import data from './data/data.json';
 
+let genres = []
+
+function unique(arr) {
+  return Array.from(new Set(arr))
+}
+
+data.media.map(item => {
+  return genres.push(item.genre)
+})
+
+let mergedGenres = [].concat.apply([], genres)
+mergedGenres = unique(mergedGenres).sort()
+
 class App extends Component {
   constructor(props) {
     super()
@@ -15,11 +28,16 @@ class App extends Component {
       isLoading: true,
       filteredList: data.media,
       listAll: data.media,
-      selectedRadio: null
+      selectedRadio: null,
+      searchTerm: '',
+      genres: mergedGenres
     }
     this.updateJoke = this.updateJoke.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
     this.clearFilters = this.clearFilters.bind(this)
+    this.onSearchChange = this.onSearchChange.bind(this)
+    this.handleGenreChange = this.handleGenreChange.bind(this)
+    this.handleYearChange = this.handleYearChange.bind(this)
   }
 
   componentWillMount() {
@@ -45,8 +63,35 @@ class App extends Component {
 
   clearFilters(e) {
     e.preventDefault()
-    this.setState({ filteredList: this.state.listAll })
+    this.setState({ filteredList: this.state.listAll, searchTerm: '' })
     Array.from(document.querySelectorAll('input')).map(item => item.checked = false)
+    Array.from(document.querySelectorAll(".active")).map(item => item.classList.remove('active'))
+  }
+
+  onSearchChange(e) {
+    this.setState({ searchTerm: e.target.value });
+  }
+
+  handleGenreChange(e) {
+    e.preventDefault()
+    const filteredList = this.state.filteredList.filter(item => item.genre.includes(e.target.id))
+    this.setState({ filteredList })
+    if( e.target.classList.contains('active') ) {
+      e.target.classList.remove('active')
+    } else {
+      e.target.classList.add('active')
+    }
+  }
+
+  handleYearChange(e) {
+    e.preventDefault()
+    const filteredList = this.state.filteredList.filter(item => item.year === e.target.className)
+    this.setState({ filteredList })
+    if( e.target.classList.contains('active') ) {
+      e.target.classList.remove('active')
+    } else {
+      e.target.classList.add('active')
+    }
   }
 
   render() {
@@ -60,9 +105,16 @@ class App extends Component {
         <Filters
           handleTypeChange={this.handleTypeChange}
           clearFilters={this.clearFilters}
+          value={this.state.searchTerm}
+          onChange={this.onSearchChange}
+          list={this.state.filteredList}
+          handleGenreChange={this.handleGenreChange}
+          handleYearChange={this.handleYearChange}
+          genres={this.state.genres}
         />
         <MovieList
           list={this.state.filteredList}
+          searchTerm={this.state.searchTerm}
         />
       </div>
     );

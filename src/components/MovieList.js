@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import './MovieList.css';
 
+function isSearched(searchTerm) {
+  return (item => {
+    if ( item.title ) {
+      return !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    }
+  })
+}
+
 class MovieList extends Component {
-  constructor(props) {
-    super(props)
-
-    console.log(this.props.list)
-  }
-
 
   render() {
     return(
       <div className="section-wrapper">
-        <h1>hello</h1>
         <ul className="movie-list">
-          {this.props.list.map((item, index) => (
+          {this.props.list.filter(isSearched(this.props.searchTerm))
+                          .map((item, index) => (
             <li key={index} className="movie-container">
               <img className="movie-image" src={item.poster} alt="Movie Poster"/>
               <span>{item.title}</span>

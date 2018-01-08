@@ -1,0 +1,15 @@
+.testimonial-body {
+  background-color: lightgray;
+  color: black;
+  text-align: center;
+  padding: 2.5rem;
+  margin: 20px 0;
+}
+
+.testimonial-body__content {
+  max-width: 450px;
+  text-align:left;
+  margin: 0 auto;
+  border-left: 5px orange solid;
+  padding-left: 25px;
+}

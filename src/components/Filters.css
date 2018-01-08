@@ -1,7 +1,30 @@
+.dropdown-search-container {
+  display:flex;
+}
+
+.search-bar input {
+  padding: 1rem;
+  border: 1px solid black;
+  font-size: 1rem;
+}
+
+#list-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
 .dropdown {
     float: left;
     overflow: hidden;
     border: 1px solid black;
+    margin-right: 10px;
 }
 
 .dropdown .dropbtn {
@@ -44,7 +67,6 @@
 }
 
 .radio-container {
-    display: block;
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
@@ -120,4 +142,13 @@
 .filter-type {
   display: flex;
   flex-wrap: wrap;
+}
+
+.active {
+  background-color: gray;
+}
+
+#clear-filters {
+  color: blue;
+  font-weight: bold;
 }

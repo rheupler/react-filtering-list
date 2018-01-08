@@ -8,6 +8,7 @@ CTA SECTION
   padding: 3rem;
   margin: 20px 0;
   display: flex;
+  align-items: center;
 }
 
 .cta-body__text {
