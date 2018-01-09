@@ -23,9 +23,8 @@ const Filters = (props) => (
           <button className="dropbtn">Year
           </button>
           <div className="dropdown-content">
-            {props.list.sort((a, b) => a.year > b.year ? 1 : -1)
-                       .map((movie, index) => (
-              <a key={index} href="" className={movie.year} onClick={props.handleYearChange}>{movie.year}</a>
+            {props.years.map((year, index) => (
+              <a key={index} href="" className={year} onClick={props.handleYearChange}>{year}</a>
             ))}
           </div>
         </div>

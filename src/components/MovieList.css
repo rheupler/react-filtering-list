@@ -12,10 +12,24 @@
   margin: 10px;
 }
 
+.movie-list {
+  min-height: 100vh;
+}
+
 .movie-image {
   width: 100%;
 }
 
 .genre {
   display: block;
+}
+
+@media screen and (max-width: 578px) {
+
+  .movie-list .movie-container {
+    width: 50%;
+    flex-direction: column;
+    margin: 10px;
+  }
+
 }

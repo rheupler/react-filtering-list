@@ -7,6 +7,7 @@ import Filters from './components/Filters';
 import data from './data/data.json';
 
 let genres = []
+let years = []
 
 function unique(arr) {
   return Array.from(new Set(arr))
@@ -16,8 +17,15 @@ data.media.map(item => {
   return genres.push(item.genre)
 })
 
+data.media.map(item => {
+  return years.push(item.year)
+})
+
 let mergedGenres = [].concat.apply([], genres)
 mergedGenres = unique(mergedGenres).sort()
+
+let mergedYears = [].concat.apply([], years);
+mergedYears = unique(years).sort();
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +38,8 @@ class App extends Component {
       listAll: data.media,
       selectedRadio: null,
       searchTerm: '',
-      genres: mergedGenres
+      genres: mergedGenres,
+      years: mergedYears
     }
     this.updateJoke = this.updateJoke.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
@@ -75,7 +84,7 @@ class App extends Component {
   handleGenreChange(e) {
     e.preventDefault()
     const filteredList = this.state.filteredList.filter(item => item.genre.includes(e.target.id))
-    this.setState({ filteredList })
+    this.setState({ filteredList, filtered: e.target.id })
     if( e.target.classList.contains('active') ) {
       e.target.classList.remove('active')
     } else {
@@ -111,6 +120,7 @@ class App extends Component {
           handleGenreChange={this.handleGenreChange}
           handleYearChange={this.handleYearChange}
           genres={this.state.genres}
+          years={this.state.years}
         />
         <MovieList
           list={this.state.filteredList}
